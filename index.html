@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Carbon Footprint Calculator 🌍</h2>
+        <form method="POST" action="/calculate">
+            <label>Distance Travelled (km):</label>
+            <input type="number" name="distance" required>
+
+            <label>Mode of Transport:</label>
+            <select name="transport">
+                <option value="car">Car</option>
+                <option value="bus">Bus</option>
+                <option value="bike">Bike</option>
+            </select>
+
+            <label>Electricity Used (kWh/day):</label>
+            <input type="number" name="electricity" required>
+
+            <label>Food Habit:</label>
+            <select name="food">
+                <option value="veg">Vegetarian</option>
+                <option value="nonveg">Non-Vegetarian</option>
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+</body>
+</html>
