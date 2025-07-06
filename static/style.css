@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9f5ee;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centered Form Container */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+/* Form Header */
+h2 {
+    text-align: center;
+    color: #2e8b57;
+    margin-bottom: 20px;
+}
+
+/* Label Styling */
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Input and Select Box Styling */
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Button Styling */
+button {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #246b45;
+}
