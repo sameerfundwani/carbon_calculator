@@ -5,12 +5,49 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Your Estimated Carbon Footprint 🌿</h2>
-        <p>Total Emission: <strong>{{ emission }} kg CO₂/day</strong></p>
-        <a href="/" style="text-decoration:none;">
-            <button>Calculate Again</button>
-        </a>
-    </div>
+<div class="container">
+    <h2>Your Estimated Carbon Footprint 🌿</h2>
+
+    <p>Total Emission: 
+        <strong style="color: {{ color }};">
+            {{ emission }} kg CO₂/day
+        </strong>
+    </p>
+
+    <p>Status: 
+        <strong style="color: {{ color }};">
+            {{ level }}
+        </strong>
+    </p>
+
+    <p>
+        {% if level == "Low" %}
+            ✅ Excellent! You're in a sustainable range.
+        {% elif level == "Moderate" %}
+            ⚠️ Consider reducing usage slightly for better impact.
+        {% else %}
+            ❌ High emissions! Try switching to cleaner transport or saving electricity.
+        {% endif %}
+    </p>
+
+    <!-- AI Suggestion -->
+    <button onclick="getAdvice()">💡 Get AI Suggestion</button>
+    <p id="advice" style="margin-top: 10px;"></p>
+
+    <!-- Go Back Button -->
+    <a href="/" style="text-decoration:none;">
+        <button>🔁 Calculate Again</button>
+    </a>
+</div>
+
+<script>
+function getAdvice() {
+    fetch("/ai-advice")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("advice").innerText = data;
+    });
+}
+</script>
 </body>
 </html>

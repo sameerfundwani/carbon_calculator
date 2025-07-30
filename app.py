@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request
+import random
 
-from flask import Flask, render_template, request
-
-app = Flask(__name__,template_folder ="template")
+app = Flask(__name__, template_folder="template")
 
 @app.route('/')
 def index():
@@ -15,26 +14,62 @@ def calculate():
     electricity = float(request.form['electricity'])
     food = request.form['food']
 
-    # Emission factors
+    # Transport emission factors (kg CO2 per km)
     transport_emissions = {
-        'car': 0.21,
-        'bus': 0.1,
-        'bike': 0.0
+        'Car - Petrol': 0.21,
+        'Car - Diesel': 0.25,
+        'Car - EV': 0.05,
+        'Car - Hybrid': 0.13,
+        'Bike - Petrol': 0.10,
+        'Bike - Electric': 0.03,
+        'Bus': 0.08
     }
 
+    # Food emissions (kg CO2 per day)
     food_emissions = {
-        'veg': 2.0,
-        'nonveg': 5.0
+        'Vegetarian': 1.5,
+        'Non-Vegetarian': 2.5
     }
 
-    # Calculation
+    # Calculate total emission
     total_emission = (
         distance * transport_emissions.get(transport, 0) +
-        electricity * 0.5 +
+        electricity * 0.92 +
         food_emissions.get(food, 0)
     )
 
-    return render_template('result.html', emission=round(total_emission, 2))
+    # Emission range classification
+    if total_emission < 2:
+        level = "Low"
+        color = "green"
+    elif total_emission < 5:
+        level = "Moderate"
+        color = "orange"
+    else:
+        level = "High"
+        color = "red"
+
+    return render_template(
+        'result.html',
+        emission=round(total_emission, 2),
+        level=level,
+        color=color
+    )
+
+# AI advice generator route
+@app.route('/ai-advice')
+def ai_advice():
+    tips = [
+        "🚲 Switch to cycling or walking for short distances.",
+        "💡 Use LED bulbs to save electricity.",
+        "♻️ Reduce, reuse, and recycle as much as possible.",
+        "🥦 Eat more plant-based meals.",
+        "🔌 Unplug devices when not in use.",
+        "🌳 Plant a tree to offset your emissions.",
+        "🚌 Use public transport instead of personal vehicles.",
+        "🔋 Switch to renewable energy sources if available."
+    ]
+    return random.choice(tips)
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)
