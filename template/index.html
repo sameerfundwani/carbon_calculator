@@ -5,30 +5,35 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Carbon Footprint Calculator 🌍</h2>
-        <form method="POST" action="/calculate">
-            <label>Distance Travelled (km):</label>
-            <input type="number" name="distance" required>
+<div class="container">
+    <h2>Carbon Footprint Calculator 🌍</h2>
+    <form method="POST" action="/calculate">
 
-            <label>Mode of Transport:</label>
-            <select name="transport">
-                <option value="car">Car</option>
-                <option value="bus">Bus</option>
-                <option value="bike">Bike</option>
-            </select>
+        <label>Distance Travelled (km):</label>
+        <input type="number" name="distance" required>
 
-            <label>Electricity Used (kWh/day):</label>
-            <input type="number" name="electricity" required>
+        <label>Mode of Transport:</label>
+        <select name="transport" required>
+            <option value="Car - Petrol">Car - Petrol</option>
+            <option value="Car - Diesel">Car - Diesel</option>
+            <option value="Car - EV">Car - Electric Vehicle</option>
+            <option value="Car - Hybrid">Car - Hybrid</option>
+            <option value="Bike - Petrol">Bike - Petrol</option>
+            <option value="Bike - Electric">Bike - Electric</option>
+            <option value="Bus">Bus</option>
+        </select>
 
-            <label>Food Habit:</label>
-            <select name="food">
-                <option value="veg">Vegetarian</option>
-                <option value="nonveg">Non-Vegetarian</option>
-            </select>
+        <label>Electricity Used (kWh/day):</label>
+        <input type="number" name="electricity" required>
 
-            <button type="submit">Calculate</button>
-        </form>
-    </div>
+        <label>Food Habit:</label>
+        <select name="food">
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non-Vegetarian">Non-Vegetarian</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+    </form>
+</div>
 </body>
 </html>
